@@ -5,13 +5,16 @@ import java.util.List;
 public class Vertice {
 	
 	 private String conteudo;
+	 private String id; 
      private int distancia;
      private boolean visitado;
      private Vertice pai;
      private List<Aresta> arestas;
      private List<Vertice> vizinhos;
      
-     public Vertice() { 
+     public Vertice(String conteudo, String id) { 
+    	 this.conteudo = conteudo; 
+    	 this.id = id; 
     	 this.visitado = false; 
     	 this.arestas = new ArrayList<Aresta>();
     	 this.vizinhos = new ArrayList<Vertice>();	 
@@ -69,14 +72,20 @@ public class Vertice {
              return this.vizinhos;
      }
      
-     public void setArestas(List <Aresta> arestas){
-             
+     public String getId() {
+		return id;
+	}
+
+	public void setId(String id) {
+		this.id = id;
+	}
+
+	public void setArestas(List <Aresta> arestas){
              this.arestas.addAll(arestas);
              
      }
      
      public List<Aresta> getArestas() {
-             
              return arestas;
      }
      

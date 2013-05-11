@@ -1,38 +1,30 @@
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Iterator;
 
-public class Grafo {
+public interface Grafo {
 
-	private List<Vertice> grafo = new ArrayList<Vertice>();
+	public void adicionarVertice(String conteudo, String id);
 
-	public void setVertices(List<Vertice> listaAdjacenciaVertice) {
+	public Vertice adicionarVertice(Vertice v);
 
-		this.grafo.addAll(listaAdjacenciaVertice);
-	}
+	public Vertice getVertice(String id);
 
-	public void adicionarVertice(Vertice novoVertice) {
+	public void adicionarAresta(Vertice origem, Vertice destino);
 
-		this.grafo.add(novoVertice);
-	}
+	@SuppressWarnings("rawtypes")
+	public Iterator iteradorVertice();
 
-	public List<Vertice> getVertices() {
+	@SuppressWarnings("rawtypes")
+	// através de arestas incidentes em um vértice
+	public Iterator iteradorAresta(Vertice u);
 
-		return this.grafo;
-	}
+	@SuppressWarnings("rawtypes")
+	// u é o índice do vértice no qual as arestas incidem
+	public Iterator iteradorAresta(int u);
 
-	public Vertice encontrarVertice(String verticeBuscado) {
+	public int getCardinalidadeVertice();
 
-		for (int i = 0; i < this.getVertices().size(); i++) {
+	public int getCardinalidadeAresta();
 
-			if (verticeBuscado.equalsIgnoreCase(this.getVertices().get(i).getConteudo())) {
-
-				return this.getVertices().get(i);
-
-			}
-		}
-
-		return null;
-
-	}
+	public boolean ehDirecionado();
 
 }
