@@ -6,14 +6,14 @@ public class DFS {
 	protected int tempo;
 
 	protected VerticeDFS[] dfsResultado; // resultado da dfs
-	
+
 	public void search(GrafoComoListaAdjacencia grafo) {
 		dfsResultado = new VerticeDFS[grafo.getCardinalidadeVertice()];
 		for (int i = 0; i < dfsResultado.length; i++)
 			dfsResultado[i] = new VerticeDFS();
 
-		tempo = 0; 
-		
+		tempo = 0;
+
 		// Chama a visita enquanto não houver vértice não visitado
 		@SuppressWarnings("rawtypes")
 		Iterator iter = grafo.vertexIterator();
@@ -27,7 +27,8 @@ public class DFS {
 
 	protected void dfsVisit(GrafoComoListaAdjacencia grafo, Vertice u) {
 		VerticeDFS informacaoVertice = getDFSInfo(u);
-		informacaoVertice.setCor(Color.GRAY); // white vertex u has just been discovered
+		informacaoVertice.setCor(Color.GRAY); // white vertex u has just been
+												// discovered
 		tempo++;
 		informacaoVertice.setTempoDescoberta(tempo);
 		discover(grafo, u); // if there is something to do now
@@ -61,7 +62,7 @@ public class DFS {
 	 *            returned.
 	 */
 	public VerticeDFS getDFSInfo(Vertice v) {
-		return dfsResultado[v.getId()];
+		return dfsResultado[Integer.parseInt(v.getId())];
 	}
 
 	/**
