@@ -45,13 +45,12 @@ public class GrafoComoListaAdjacencia implements Grafo {
 
 	}
 
-	@Override
-	public void adicionarVertice(String conteudo, String id) {
+	public void adicionarVertice(String conteudo, int id) {
 		this.listaAdjacencia.add(new Vertice(conteudo, id));
 	}
 
 	@Override
-	public Vertice getVertice(String id) {
+	public Vertice getVertice(int id) {
 
 		for (int i = 0; i < listaAdjacencia.size(); i++) {
 			if (listaAdjacencia.get(i).equals(id)) {
