@@ -16,7 +16,7 @@ public class DFS {
 
 		// Chama a visita enquanto não houver vértice não visitado
 		@SuppressWarnings("rawtypes")
-		Iterator iter = grafo.vertexIterator();
+		Iterator iter = grafo.iteradorVertice();
 
 		while (iter.hasNext()) {
 			Vertice u = (Vertice) iter.next();
@@ -35,7 +35,7 @@ public class DFS {
 
 		// Explore each adjacent edge (u,v).
 		@SuppressWarnings("rawtypes")
-		Iterator iter = grafo.edgeIterator(u);
+		Iterator iter = grafo.iteradorAresta(u);
 
 		while (iter.hasNext()) {
 			Vertice v = (Vertice) iter.next();
@@ -54,7 +54,7 @@ public class DFS {
 	}
 
 	public VerticeDFS getDFSInfo(Vertice v) {
-		return dfsResultado[v.getId()];
+		return dfsResultado[v.getIndice()];
 	}
 
 

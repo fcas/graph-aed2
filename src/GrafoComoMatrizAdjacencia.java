@@ -28,8 +28,8 @@ public class GrafoComoMatrizAdjacencia implements Grafo{
 	}
 	
 	@Override
-	public Vertice adicionarVertice(String conteudo, int id) {
-		ultimoAdicionado = id;
+	public Vertice adicionarVertice(String conteudo, int indice) {
+		ultimoAdicionado = indice;
 		vertices[ultimoAdicionado] = new Vertice(ultimoAdicionado, conteudo);
 		return vertices[ultimoAdicionado];	
 	}
@@ -37,13 +37,13 @@ public class GrafoComoMatrizAdjacencia implements Grafo{
 	public Vertice adicionarVertice (Vertice v)
     {
 		
-	if (v.getId() == Vertice.INDICE_DESCONHECIDO) {
+	if (v.getIndice() == Vertice.INDICE_DESCONHECIDO) {
 		ultimoAdicionado++;
-	    v.setId(ultimoAdicionado);
+	    v.setIndice(ultimoAdicionado);
 	}
 	
 	else
-		ultimoAdicionado = v.getId();
+		ultimoAdicionado = v.getIndice();
 
 	vertices[ultimoAdicionado] = v;
 	return v;
@@ -57,7 +57,7 @@ public class GrafoComoMatrizAdjacencia implements Grafo{
 
 	@Override
 	public void adicionarAresta(Vertice origem, Vertice destino) {
-		adicionarAresta(origem.getId(), destino.getId());
+		adicionarAresta(origem.getIndice(), destino.getIndice());
 	}
 
 	private void adicionarAresta(int idOrigem, int idDestino) {
@@ -78,13 +78,13 @@ public class GrafoComoMatrizAdjacencia implements Grafo{
 	@SuppressWarnings("rawtypes")
 	@Override
 	public Iterator iteradorAresta(Vertice verticeOndeIncide) {
-		return new ArestaIterator(verticeOndeIncide.getId(), vertices, matriz);
+		return new ArestaIteratorMA(verticeOndeIncide.getIndice(), vertices, matriz);
 	}
 
 	@SuppressWarnings("rawtypes")
 	@Override
 	public Iterator iteradorAresta(int indiceVerticeOndeIncide) {
-		return new ArestaIterator(indiceVerticeOndeIncide, vertices, matriz);
+		return new ArestaIteratorMA(indiceVerticeOndeIncide, vertices, matriz);
 	}
 
 	@Override
@@ -104,7 +104,7 @@ public class GrafoComoMatrizAdjacencia implements Grafo{
 	
 	public boolean existeAresta(Vertice origem, Vertice destino)
     {
-	return existeAresta(origem.getId(), destino.getId());
+	return existeAresta(origem.getIndice(), destino.getIndice());
     }
 
 	private boolean existeAresta(int idOrigem, int idDestino) {

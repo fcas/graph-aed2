@@ -7,7 +7,7 @@ public class Vertice {
      public static final int INDICE_DESCONHECIDO = -1;
 	
 	 private String conteudo;
-	 private int id; 
+	 private int indice; 
      private int distancia;
      private boolean visitado;
      private Vertice pai;
@@ -16,16 +16,16 @@ public class Vertice {
      
      public Vertice(String conteudo)
      {
-    	 id = INDICE_DESCONHECIDO;
+    	 indice = INDICE_DESCONHECIDO;
     	 this.conteudo = conteudo;
     	 this.visitado = false; 
     	 this.arestas = new ArrayList<Aresta>();
     	 this.vizinhos = new ArrayList<Vertice>();	 
      }
      
-     public Vertice (int id, String conteudo)
+     public Vertice (int indice, String conteudo)
      {
-    	 this.id = id;
+    	 this.indice = indice;
     	 this.conteudo = conteudo;
     	 this.visitado = false; 
     	 this.arestas = new ArrayList<Aresta>();
@@ -34,7 +34,7 @@ public class Vertice {
      
      public Vertice(String conteudo, int id) { 
     	 this.conteudo = conteudo; 
-    	 this.id = id; 
+    	 this.indice = id; 
     	 this.visitado = false; 
     	 this.arestas = new ArrayList<Aresta>();
     	 this.vizinhos = new ArrayList<Vertice>();	 
@@ -92,12 +92,12 @@ public class Vertice {
              return this.vizinhos;
      }
      
-     public int getId() {
-		return id;
+     public int getIndice() {
+		return indice;
 	}
 
-	public void setId(int id) {
-		this.id = id;
+	public void setIndice(int indice) {
+		this.indice = indice;
 	}
 
 	public void setArestas(List <Aresta> arestas){
@@ -111,7 +111,7 @@ public class Vertice {
      
      public String toString()
      {
-    	 return conteudo + " (id = " + id + ")"; 
+    	 return conteudo + " (indice = " + indice + ")"; 
      }
      
 }

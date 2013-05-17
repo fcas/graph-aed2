@@ -6,104 +6,107 @@ public class GrafoComoListaAdjacencia implements Grafo {
 
 	protected boolean direcionado;
 
-	protected String ultimoVerticeAdicionado;
+	protected int ultimoVerticeAdicionado;
 
-	protected int quantidadeArestas;
+	protected int qtdArestas;
 
+	@SuppressWarnings("unused")
 	private List<Vertice> listaAdjacencia = new ArrayList<Vertice>();
 
-	public GrafoComoListaAdjacencia(boolean direcionado) {
+	protected AdjListInfo[] adj;
+
+	public GrafoComoListaAdjacencia(int cardV, boolean direcionado) {
 		this.direcionado = direcionado;
+		ultimoVerticeAdicionado = -1;
+		adj = new AdjListInfo[cardV];
+		qtdArestas = 0;
+	}
+	
+	public Vertice adicionarVertice(String conteudo) {
+		ultimoVerticeAdicionado++;
+		adj[ultimoVerticeAdicionado] = new AdjListInfo(new Vertice(
+				ultimoVerticeAdicionado, conteudo));
+		return adj[ultimoVerticeAdicionado].esteVertice;
 	}
 
-	public void setVertices(List<Vertice> listaAdjacenciaVertice) {
-		this.listaAdjacencia.addAll(listaAdjacenciaVertice);
+	public Vertice adicionarVertice(String conteudo, int indice) {
+		ultimoVerticeAdicionado = indice;
+		adj[ultimoVerticeAdicionado] = new AdjListInfo(new Vertice(
+				ultimoVerticeAdicionado, conteudo));
+		return adj[ultimoVerticeAdicionado].esteVertice;
+	}
+	
+	public Vertice adicionarVertice (Vertice v) {
+		if (v.getIndice() == Vertice.INDICE_DESCONHECIDO) {
+			ultimoVerticeAdicionado++;
+			v.setIndice(ultimoVerticeAdicionado);
+		} else
+			ultimoVerticeAdicionado = v.getIndice();
+
+		adj[ultimoVerticeAdicionado] = new AdjListInfo(v);
+		return v;
 	}
 
-	public Vertice adicionarVertice(Vertice novoVertice) {
-		this.listaAdjacencia.add(novoVertice);
-		return novoVertice;
+	public Vertice getVertice(int indice) {
+		return adj[indice].esteVertice;
 	}
+	
+	public void adicionarAresta (Vertice origem, Vertice destino) {
 
-	public List<Vertice> getVertices() {
-		return this.listaAdjacencia;
-	}
-
-	public Vertice encontrarVertice(String verticeBuscado) {
-
-		for (int i = 0; i < this.getVertices().size(); i++) {
-
-			if (verticeBuscado.equalsIgnoreCase(this.getVertices().get(i)
-					.getConteudo())) {
-
-				return this.getVertices().get(i);
-
-			}
-		}
-
-		return null;
-
-	}
-
-	public void adicionarVertice(String conteudo, int id) {
-		this.listaAdjacencia.add(new Vertice(conteudo, id));
-	}
-
-	@Override
-	public Vertice getVertice(int id) {
-
-		for (int i = 0; i < listaAdjacencia.size(); i++) {
-			if (listaAdjacencia.get(i).equals(id)) {
-				return listaAdjacencia.get(i);
-			} else
-				i = listaAdjacencia.size() + i;
-		}
-
-		return null;
-	}
-
-	@Override
-	public void adicionarAresta(Vertice origem, Vertice destino) {
+		int indiceOrigem = origem.getIndice();
+		Aresta x = new Aresta(destino, adj[indiceOrigem].cabeca);
+		adj[indiceOrigem].cabeca = x;
 
 		if (!direcionado) {
-			origem.getVizinhos().add(destino);
-			destino.getVizinhos().add(origem);
-		} else { 
-			origem.getVizinhos().add(destino);
+			int indiceDestino = destino.getIndice();
+			x = new Aresta(origem, adj[indiceDestino].cabeca);
+			adj[indiceDestino].cabeca = x;
 		}
+
+		qtdArestas++;
+
+	}
+	
+	public void adicionarAresta(int idOrigem, int idDestino) {
+
+		Aresta x = new Aresta(adj[idDestino].esteVertice, adj[idOrigem].cabeca);
+		adj[idOrigem].cabeca = x;
+
+		if (!direcionado) {
+			x = new Aresta(adj[idOrigem].esteVertice, adj[idDestino].cabeca);
+			adj[idDestino].cabeca = x;
+		}
+
+		qtdArestas++;
 
 	}
 
 	@SuppressWarnings("rawtypes")
 	@Override
 	public Iterator iteradorVertice() {
-		// TODO Auto-generated method stub
-		return null;
+		return iteradorVertice();
 	}
 
 	@SuppressWarnings("rawtypes")
 	@Override
 	public Iterator iteradorAresta(Vertice u) {
-		// TODO Auto-generated method stub
-		return null;
+		return new ArestaIteratorLA(u.getIndice(), adj);
 	}
 
 	@SuppressWarnings("rawtypes")
 	@Override
 	public Iterator iteradorAresta(int u) {
-		// TODO Auto-generated method stub
-		return null;
+		return new ArestaIteratorLA(u, adj);
 	}
 
 	@Override
 	public int getCardinalidadeVertice() {
-		return listaAdjacencia.size();
+		return adj.length;
 	}
 
 	@Override
 	public int getCardinalidadeAresta() {
-		// TODO Auto-generated method stub
-		return 0;
+		return qtdArestas;
 	}
 
 	@Override
@@ -111,15 +114,4 @@ public class GrafoComoListaAdjacencia implements Grafo {
 		return direcionado;
 	}
 
-	@SuppressWarnings("rawtypes")
-	public Iterator vertexIterator() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@SuppressWarnings("rawtypes")
-	public Iterator edgeIterator(Vertice u) {
-		// TODO Auto-generated method stub
-		return null;
-	}
 }
