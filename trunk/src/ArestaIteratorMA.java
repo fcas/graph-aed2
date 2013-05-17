@@ -2,7 +2,7 @@ import java.util.Iterator;
 
 
 @SuppressWarnings("rawtypes")
-public class ArestaIterator implements Iterator {
+public class ArestaIteratorMA implements Iterator {
 
 	/** The index of the vertex returned by the most recent call
 	 * to <code>next</code>.  Initially, it is -1. */
@@ -22,7 +22,7 @@ public class ArestaIterator implements Iterator {
 	 * @param vertices 
 	 * @param matriz 
 	 */
-	public ArestaIterator(int u, Vertice[] vertices, boolean[][] matriz)
+	public ArestaIteratorMA(int u, Vertice[] vertices, boolean[][] matriz)
 	{
 		this.matriz = matriz;
 		this.vertices = vertices;
