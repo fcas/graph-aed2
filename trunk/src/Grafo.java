@@ -2,11 +2,7 @@ import java.util.Iterator;
 
 public interface Grafo {
 
-	public void adicionarVertice(String conteudo, String id);
-
 	public Vertice adicionarVertice(Vertice v);
-
-	public Vertice getVertice(String id);
 
 	public void adicionarAresta(Vertice origem, Vertice destino);
 
@@ -26,5 +22,9 @@ public interface Grafo {
 	public int getCardinalidadeAresta();
 
 	public boolean ehDirecionado();
+
+	Vertice adicionarVertice(String conteudo, int id);
+
+	Vertice getVertice(int id);
 
 }

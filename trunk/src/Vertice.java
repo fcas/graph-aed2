@@ -4,15 +4,35 @@ import java.util.List;
 
 public class Vertice {
 	
+     public static final int INDICE_DESCONHECIDO = -1;
+	
 	 private String conteudo;
-	 private String id; 
+	 private int id; 
      private int distancia;
      private boolean visitado;
      private Vertice pai;
      private List<Aresta> arestas;
      private List<Vertice> vizinhos;
      
-     public Vertice(String conteudo, String id) { 
+     public Vertice(String conteudo)
+     {
+    	 id = INDICE_DESCONHECIDO;
+    	 this.conteudo = conteudo;
+    	 this.visitado = false; 
+    	 this.arestas = new ArrayList<Aresta>();
+    	 this.vizinhos = new ArrayList<Vertice>();	 
+     }
+     
+     public Vertice (int id, String conteudo)
+     {
+    	 this.id = id;
+    	 this.conteudo = conteudo;
+    	 this.visitado = false; 
+    	 this.arestas = new ArrayList<Aresta>();
+    	 this.vizinhos = new ArrayList<Vertice>();	 
+     }
+     
+     public Vertice(String conteudo, int id) { 
     	 this.conteudo = conteudo; 
     	 this.id = id; 
     	 this.visitado = false; 
@@ -72,11 +92,11 @@ public class Vertice {
              return this.vizinhos;
      }
      
-     public String getId() {
+     public int getId() {
 		return id;
 	}
 
-	public void setId(String id) {
+	public void setId(int id) {
 		this.id = id;
 	}
 
@@ -87,6 +107,11 @@ public class Vertice {
      
      public List<Aresta> getArestas() {
              return arestas;
+     }
+     
+     public String toString()
+     {
+    	 return conteudo + " (id = " + id + ")"; 
      }
      
 }
