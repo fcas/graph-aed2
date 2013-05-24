@@ -20,7 +20,7 @@ public class DFS {
 
 		while (iter.hasNext()) {
 			Vertice u = (Vertice) iter.next();
-			if (getDFSInfo(u).getColor() == Color.WHITE)
+			if (getDFSInfo(u).getCor() == Color.WHITE)
 				dfsVisit(grafo, u);
 		}
 	}
@@ -41,7 +41,7 @@ public class DFS {
 			Vertice v = (Vertice) iter.next();
 			VerticeDFS vInfo = getDFSInfo(v);
 
-			if (vInfo.getColor() == Color.WHITE) {
+			if (vInfo.getCor() == Color.WHITE) {
 				vInfo.setPredecessor(u);
 				dfsVisit(grafo, v);
 			}

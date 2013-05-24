@@ -41,7 +41,7 @@ public class VerticeDFS {
 		cor = c;
 	}
 
-	public Color getColor() {
+	public Color getCor() {
 		return cor;
 	}
 
