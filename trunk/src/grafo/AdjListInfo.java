@@ -1,3 +1,4 @@
+package grafo;
 
 public class AdjListInfo {
 
