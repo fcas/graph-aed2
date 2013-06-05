@@ -37,7 +37,7 @@ public class ArestaIteratorLA implements Iterator {
 	    if (current == null)
 		return adj[index].cabeca != null;
 	    else
-		return current.proximo != null;
+		return current.getProximo() != null;
 	}
 
 	/** Returns the next edge in the iteration. */
@@ -46,9 +46,9 @@ public class ArestaIteratorLA implements Iterator {
 	    if (current == null)
 		current = adj[index].cabeca;
 	    else
-		current = current.proximo;
+		current = current.getProximo();
 
-	    return current.vertice;
+	    return current.getVertice();
 	}
 
 	/**
