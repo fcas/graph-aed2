@@ -2,17 +2,18 @@ package menorcaminho;
 
 import grafo.Vertice;
 
-public class MenorCaminhoInfo
-{
-    private double menorCaminho;
+public class MenorCaminhoInfo {
+	private double menorCaminho;
 
-    /** Vértice predecessor (pai) para esse vértice */
-    private Vertice pai;
+	/** Vértice predecessor (pai) para esse vértice */
+	private Vertice pai;
 
-    /** Inicializa a estimativa do menor caminho como infinita 
-     * e o predecessor como nulo */
-	
-    public MenorCaminhoInfo() {
+	/**
+	 * Inicializa a estimativa do menor caminho como infinita e o predecessor
+	 * como nulo
+	 */
+
+	public MenorCaminhoInfo() {
 		menorCaminho = Double.POSITIVE_INFINITY;
 		pai = null;
 	}
@@ -25,17 +26,16 @@ public class MenorCaminhoInfo
 		return menorCaminho;
 	}
 
-    public void setPredecessor(Vertice vertice){
-    	pai = vertice;
-    }
+	public void setPredecessor(Vertice vertice) {
+		pai = vertice;
+	}
 
 	public Vertice getPredecessor() {
 		return pai;
 	}
 
+	/* Retorna true se a estimativa para o vértice mudar, false, caso contrário. */
 
-   /* Retorna true se a estimativa para o vértice mudar, false, caso contrário.*/
-	
 	public boolean relaxar(Vertice origem, double estimativa, double peso) {
 		double novoPeso = estimativa + peso;
 		if (novoPeso < menorCaminho) {
@@ -44,9 +44,9 @@ public class MenorCaminhoInfo
 			return true;
 		} else
 			return false;
-	}	
+	}
 
-    public String toString() {
+	public String toString() {
 		String parentName;
 
 		if (pai == null)

@@ -71,6 +71,24 @@ public class GrafoComoListaAdjacencia implements Grafo {
 
 	}
 	
+	public void adicionarAresta (Vertice origem, Vertice destino, double peso) {
+
+		int indiceOrigem = origem.getIndice();
+		Aresta x = new Aresta(destino, adj[indiceOrigem].cabeca);
+		adj[indiceOrigem].cabeca = x;
+		x.setPeso(peso);
+
+		if (!direcionado) {
+			int indiceDestino = destino.getIndice();
+			x = new Aresta(origem, adj[indiceDestino].cabeca);
+			adj[indiceDestino].cabeca = x;
+			x.setPeso(peso);
+		}
+
+		qtdArestas++;
+
+	}
+	
 	public void adicionarAresta(int idOrigem, int idDestino) {
 
 		Aresta x = new Aresta(adj[idDestino].esteVertice, adj[idOrigem].cabeca);
@@ -121,6 +139,26 @@ public class GrafoComoListaAdjacencia implements Grafo {
 	public ArestaPesadaIterator arestaPesadaIterator(Vertice u) {
 		return arestaPesadaIterator(u);
 	}
+	
+	/**
+	 * gera um grafo com os mesmos vertices sem arestas.
+	 * @return
+	 */
+	public GrafoComoListaAdjacencia useSameVertices()
+    {
+
+		GrafoComoListaAdjacencia newGraph = makeEmptyGraph(adj.length, direcionado);
+
+		for (int i = 0; i < adj.length; i++)
+		    newGraph.adicionarVertice(adj[i].esteVertice);
+
+		return newGraph;
+    }
+	 
+	protected GrafoComoListaAdjacencia makeEmptyGraph(int cardV, boolean directed)
+    {
+		return new GrafoComoListaAdjacencia(cardV, directed);
+    }
 
 	
 

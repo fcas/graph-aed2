@@ -9,7 +9,7 @@ public class ArestaIteratorMA implements Iterator {
 	 * to <code>next</code>.  Initially, it is -1. */
 	protected int current;
 	Vertice[] vertices;
-	protected boolean[][] matriz;
+	protected double[][] matriz;
 
 	/** The index of the vertex whose edges this iterator iterates
 	 * through. */
@@ -23,7 +23,7 @@ public class ArestaIteratorMA implements Iterator {
 	 * @param vertices 
 	 * @param matriz 
 	 */
-	public ArestaIteratorMA(int u, Vertice[] vertices, boolean[][] matriz)
+	public ArestaIteratorMA(int u, Vertice[] vertices, double[][] matriz)
 	{
 		this.matriz = matriz;
 		this.vertices = vertices;
@@ -39,7 +39,7 @@ public class ArestaIteratorMA implements Iterator {
 
 	    // Keep going until we find a 'true' entry or run out of
 	    // columns.
-	    while (v < matriz[u].length && !matriz[u][v])
+	    while (v < matriz[u].length && (matriz[u][v] == GrafoComoMatrizAdjacencia.absent));
 		v++;
 
 	    return v < matriz[u].length;
@@ -51,8 +51,8 @@ public class ArestaIteratorMA implements Iterator {
 	    current++;		// start with next vertex
 
 	    // Keep going until we find a 'true' entry.
-	    while (!matriz[u][current])
-		current++;
+	    while (matriz[u][current] == GrafoComoMatrizAdjacencia.absent)
+	    	current++;
 
 	    return vertices[current];
 	}

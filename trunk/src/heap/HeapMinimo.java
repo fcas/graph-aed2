@@ -1,13 +1,15 @@
 package heap;
 
 /**
-* Implementa um heap de maximo binario.
+* Implementa um heap de minimo binario.
+* 
+* @author AnderShow
 */
 
-public class MaxHeap extends Heap
+public class HeapMinimo extends Heap
 {
    /** Cria um heap vazio.*/
-   MaxHeap()
+   HeapMinimo()
    {
 	super();
    }
@@ -18,24 +20,24 @@ public class MaxHeap extends Heap
     * 
     * @param vetor Vetor do qual o heap sera criado.
     */
-   MaxHeap(Comparable[] array)
+  HeapMinimo(Comparable[] array)
    {
 	super(array);
    }
 
-   /**
-    * Restaura as propriedades de heap de maximo.
-    *
-    * @param i Indice da posicao do elemento que pode nao obedecer a propriedade de heap.
-    */
+  /**
+   * Restaura as propriedades de heap de minimo.
+   *
+   * @param i Indice da posicao do elemento que pode nao obedecer a propriedade de heap.
+   */
    public void heapifica(int i)
    {
 	int l = filhoEsq(i);
 	int r = filhoDir(i);
 	int smallest = i;
-	if (l < heapTam && vetor[l].compareTo(vetor[i]) > 0)
+	if (l < heapTam && vetor[l].compareTo(vetor[i]) < 0)
 	    smallest = l;
-	if (r < heapTam && vetor[r].compareTo(vetor[smallest]) > 0)
+	if (r < heapTam && vetor[r].compareTo(vetor[smallest]) < 0)
 	    smallest = r;
 	if (smallest != i) {
 	    troca(i, smallest);

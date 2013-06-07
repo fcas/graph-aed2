@@ -1,4 +1,8 @@
-package grafo;
+package buscas;
+import grafo.GrafoComoListaAdjacencia;
+import grafo.Vertice;
+import grafo.VerticeDFS;
+
 import java.awt.Color;
 import java.util.Iterator;
 

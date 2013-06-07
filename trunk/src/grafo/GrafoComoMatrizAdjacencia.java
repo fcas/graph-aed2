@@ -2,11 +2,13 @@ package grafo;
 import java.util.Iterator;
 
 
+
 public class GrafoComoMatrizAdjacencia implements Grafo{
 
+	public static final double absent = Double.MAX_VALUE;
 	protected boolean direcionado;
 	protected Vertice[] vertices;
-	protected boolean[][] matriz;
+	protected double[][] matriz;
     protected int ultimoAdicionado;
     protected int qtdArestas;
 	
@@ -14,11 +16,11 @@ public class GrafoComoMatrizAdjacencia implements Grafo{
 		this.direcionado = direcionado;
 		ultimoAdicionado = -1;
 		vertices = new Vertice[cardV];
-		matriz = new boolean[cardV][cardV];
+		matriz = new double[cardV][cardV];
 
 		for (int i = 0; i < cardV; i++)
 			for (int j = 0; j < cardV; j++)
-				matriz[i][j] = false;
+				matriz[i][j] = absent;
 		qtdArestas = 0;
 	}
 	
@@ -58,17 +60,30 @@ public class GrafoComoMatrizAdjacencia implements Grafo{
 
 	@Override
 	public void adicionarAresta(Vertice origem, Vertice destino) {
-		adicionarAresta(origem.getIndice(), destino.getIndice());
+		throw new UnsupportedOperationException();
+//		adicionarAresta(origem.getIndice(), destino.getIndice());
 	}
 
 	private void adicionarAresta(int idOrigem, int idDestino) {
-		matriz[idOrigem][idDestino] = true;
-		if (!direcionado)
-		    matriz[idDestino][idOrigem] = true;
-
-		qtdArestas++;
+		throw new UnsupportedOperationException();
+				
+//		matriz[idOrigem][idDestino] = true;
+//		if (!direcionado)
+//		    matriz[idDestino][idOrigem] = true;
+//
+//		qtdArestas++;
 		
 	}
+	
+	public void addEdge(Vertice u, Vertice v, double weight)
+    {
+		int uIndex = u.getIndice();
+		int vIndex = v.getIndice();
+	
+		matriz[uIndex][vIndex] = weight;
+		if (!direcionado)
+		    matriz[vIndex][uIndex] = weight;
+    }
 
 	@SuppressWarnings("rawtypes")
 	@Override
@@ -109,7 +124,7 @@ public class GrafoComoMatrizAdjacencia implements Grafo{
     }
 
 	public boolean existeAresta(int idOrigem, int idDestino) {
-		return matriz[idOrigem][idDestino];
+		return matriz[idOrigem][idDestino]!=absent;
 	}
 	
 	@SuppressWarnings("rawtypes")

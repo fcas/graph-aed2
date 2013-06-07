@@ -1,4 +1,8 @@
-package grafo;
+package buscas;
+import grafo.GrafoComoListaAdjacencia;
+import grafo.Vertice;
+import grafo.VerticeBFS;
+
 import java.awt.Color;
 import java.util.Iterator;
 import java.util.LinkedList;
@@ -26,7 +30,6 @@ public class BFS {
 			VerticeBFS uInfo = getBFSInfo(u);
 			int uDistance = uInfo.getDistancia();
 
-			// Enqueue each undiscovered vertex adjacent to u.
 			@SuppressWarnings("rawtypes")
 			Iterator iter = grafo.iteradorAresta(u);
 

@@ -1,9 +1,9 @@
 package menorcaminho;
 
 import grafo.Vertice;
-import heap.DynamicSetElement;
+import heap.ElementoDinamico;
 
-public class DijkstraInfo extends MenorCaminhoInfo implements DynamicSetElement {
+public class DijkstraInfo extends MenorCaminhoInfo implements ElementoDinamico {
 
 	public Vertice vertice;
 
@@ -25,6 +25,6 @@ public class DijkstraInfo extends MenorCaminhoInfo implements DynamicSetElement 
 	}
 
 	public int compareTo(Object e) {
-		return DynamicSetElement.Helper.compareTo(this, e);
+		return ElementoDinamico.Helper.compareTo(this, e);
 	}
 }

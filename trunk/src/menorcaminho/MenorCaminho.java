@@ -11,8 +11,10 @@ abstract public class MenorCaminho {
 
     protected boolean naoExisteCicloNegativo;
 
-    /**Cada posição do array, corresponde a um vértice do grafo, 
-     * contendo a seu menor caminho*/
+	/**
+	 * Cada posição do array, corresponde a um vértice do grafo, contendo a seu
+	 * menor caminho
+	 */
     
     private MenorCaminhoInfo[] menorCaminhoInfo;
 
