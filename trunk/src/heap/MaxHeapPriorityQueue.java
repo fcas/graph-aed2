@@ -131,10 +131,10 @@ public class MaxHeapPriorityQueue extends MaxHeap implements MaxPriorityQueue
    {
 	Handle handle = (Handle) element;
 
-	if (newKey.compareTo(handle.info.getKey()) < 0)
+	if (newKey.compareTo(handle.info.getChave()) < 0)
 	    throw new KeyUpdateException();
 
-	handle.info.setKey(newKey); // coloca a nova chave
+	handle.info.setChave(newKey); // coloca a nova chave
 	bubbleUp(handle.indice);	    // restaura a propriedade de heap.
    }
 

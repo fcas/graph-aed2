@@ -3,6 +3,9 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
+import menorcaminho.ArestaPesadaIterator;
+
+
 public class GrafoComoListaAdjacencia implements Grafo {
 
 	protected boolean direcionado;
@@ -114,5 +117,11 @@ public class GrafoComoListaAdjacencia implements Grafo {
 	public boolean ehDirecionado() {
 		return direcionado;
 	}
+
+	public ArestaPesadaIterator arestaPesadaIterator(Vertice u) {
+		return arestaPesadaIterator(u);
+	}
+
+	
 
 }
