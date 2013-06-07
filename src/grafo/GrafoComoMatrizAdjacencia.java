@@ -108,7 +108,7 @@ public class GrafoComoMatrizAdjacencia implements Grafo{
 	return existeAresta(origem.getIndice(), destino.getIndice());
     }
 
-	private boolean existeAresta(int idOrigem, int idDestino) {
+	public boolean existeAresta(int idOrigem, int idDestino) {
 		return matriz[idOrigem][idDestino];
 	}
 	
@@ -132,5 +132,14 @@ public class GrafoComoMatrizAdjacencia implements Grafo{
 	return result;
 	
     }
+
+	 public double getWeight(Vertice u, Vertice v)
+	    {
+		return getPeso(u.getIndice(), v.getIndice());
+	    }
+	
+	public double getPeso(int i, int j) {
+		return matriz[i][j];
+	}
 
 }

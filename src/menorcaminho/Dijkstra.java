@@ -49,8 +49,8 @@ public class Dijkstra extends MenorCaminho {
 				Vertice vertice = (Vertice) edgeIter.next();
 				DijkstraInfo vInfo = (DijkstraInfo) getMenorCaminhoInfo(vertice
 						.getIndice());
-				double weight = edgeIter.getPeso();
-				if (vInfo.relaxar(u, du, weight)) {
+				double peso = edgeIter.getPeso();
+				if (vInfo.relaxar(u, du, peso)) {
 					// a estimativa de caminho mais curto para o vértice mudou,
 					// então, atualiza a fila de menor prioridade.
 					filaMenorPrioridade.decreaseKey(vInfo.handle, new Double(
