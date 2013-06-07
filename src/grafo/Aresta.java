@@ -8,11 +8,17 @@ public class Aresta {
 	//Próxima aresta na lista de adjacência
 	private Aresta proximo;
 	
-	private int peso;
+	private double peso;
 
 	public Aresta(Vertice vertice, Aresta sucessor){ 
 		this.vertice = vertice; 
 		this.proximo = sucessor; 
+	}
+	
+	public Aresta(Vertice vertice, Aresta sucessor, double peso) {
+		this.vertice = vertice; 
+		this.proximo = sucessor;
+		this.peso = peso;
 	}
 
 	public Vertice getVertice() {
@@ -31,13 +37,13 @@ public class Aresta {
 		this.proximo = proximo;
 	}
 
-	public int getPeso() {
+	public double getPeso() {
 		return peso;
 	}
-
-	public void setPeso(int peso) {
+	public void setPeso(double peso) {
 		this.peso = peso;
 	}
+	
 	
 	
 	

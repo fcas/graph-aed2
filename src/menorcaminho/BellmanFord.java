@@ -5,9 +5,8 @@ import grafo.Vertice;
 
 import java.util.Iterator;
 
-
 public class BellmanFord extends MenorCaminho {
-	
+
 	public BellmanFord(GrafoComoListaAdjacencia grafo) {
 		super(grafo);
 	}
@@ -24,13 +23,15 @@ public class BellmanFord extends MenorCaminho {
 
 			while (verticeIterator.hasNext()) {
 				Vertice u = (Vertice) verticeIterator.next();
-				double du = getMenorCaminhoInfo(u.getIndice()).getEstimativa();
-				ArestaPesadaIterator arestaIterator = grafo.arestaPesadaIterator(u);
+				double estimativa = getMenorCaminhoInfo(u.getIndice()).getEstimativa();
+				ArestaPesadaIterator arestaIterator = grafo
+						.arestaPesadaIterator(u);
 
 				while (arestaIterator.hasNext()) {
 					Vertice vertice = (Vertice) arestaIterator.next();
 					double peso = arestaIterator.getPeso();
-					getMenorCaminhoInfo(vertice.getIndice()).relaxar(u, du, peso);
+					getMenorCaminhoInfo(vertice.getIndice()).relaxar(u, estimativa,
+							peso);
 				}
 			}
 		}
@@ -41,13 +42,15 @@ public class BellmanFord extends MenorCaminho {
 
 		while (verticeIterator.hasNext()) {
 			Vertice u = (Vertice) verticeIterator.next();
-			double estimativa = getMenorCaminhoInfo(u.getIndice()).getEstimativa();
+			double estimativa = getMenorCaminhoInfo(u.getIndice())
+					.getEstimativa();
 			ArestaPesadaIterator arestaIterator = grafo.arestaPesadaIterator(u);
 
 			while (arestaIterator.hasNext()) {
 				Vertice vertice = (Vertice) arestaIterator.next();
 				double peso = arestaIterator.getPeso();
-				if (getMenorCaminhoInfo(vertice.getIndice()).getEstimativa() > estimativa + peso) {
+				if (getMenorCaminhoInfo(vertice.getIndice()).getEstimativa() > estimativa
+						+ peso) {
 					naoExisteCicloNegativo = false;
 					return;
 				}

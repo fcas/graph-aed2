@@ -3,12 +3,12 @@ package menorcaminho;
 import grafo.GrafoComoMatrizAdjacencia;
 
 abstract public class TodosParesMenorCaminho {
-    /** Calcula todos os pares de caminho mais curto.*/
+	/** Calcula todos os pares de caminho mais curto. */
 
 	abstract public double[][] calculaCaminhosMaisCurtos(
 			GrafoComoMatrizAdjacencia grafo);
 
-    /** Converte um graf para uma matriz de arestas pesadas.*/
+	/** Converte um graf para uma matriz de arestas pesadas. */
 	protected double[][] graphToMatrix(GrafoComoMatrizAdjacencia grafo) {
 		int n = grafo.getCardinalidadeVertice();
 
@@ -24,23 +24,23 @@ abstract public class TodosParesMenorCaminho {
 		return w;
 	}
 
-    /**Imprime uma matriz */
-	
+	/** Imprime uma matriz */
+
 	public static void imprimeMatriz(double[][] matriz) {
 		for (int i = 0; i < matriz.length; i++) {
 			for (int j = 0; j < matriz[i].length; j++)
 				System.out.print(matriz[i][j] + "  ");
 			System.out.println();
 		}
-	}	
+	}
 
-    /**Imprime uma matriz de boolenos*/
-	
+	/** Imprime uma matriz de boolenos */
+
 	public static void imprimeMatriz(boolean[][] matriz) {
 		for (int i = 0; i < matriz.length; i++) {
 			for (int j = 0; j < matriz[i].length; j++)
 				System.out.print((matriz[i][j] ? 1 : 0) + "  ");
 			System.out.println();
 		}
-	}	
+	}
 }

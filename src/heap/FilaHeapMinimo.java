@@ -1,27 +1,29 @@
 package heap;
 
-import excecoes.HeapUnderflowException;
-import excecoes.KeyUpdateException;
-import fila.MaxPriorityQueue;
+import excecoes.RemocaoIncorretaException;
+import excecoes.AtualizacaoChaveException;
+import fila.FilaPrioridadeMinimo;
 
 /**
-* Implementa uma fila de prioridade de maximo como heap.
+* * Implementa uma fila de prioridade de minimo como heap.
+* 
+* @author AnderShow
 */
 
-public class MaxHeapPriorityQueue extends MaxHeap implements MaxPriorityQueue
+public class FilaHeapMinimo extends HeapMinimo implements FilaPrioridadeMinimo
 {
-   /** Cria uma fila de prioridade de maximo vazia. */
-   public MaxHeapPriorityQueue()
+	  /** Cria uma fila de prioridade de minimo vazia. */
+   public FilaHeapMinimo()
    {
 	super();
    }
 
    /**
-    * Sobrepoe o metodo 'troca' para atualizar o indice de cada Handle.
-    *
-    * @param i indice de a.
-    * @param j indice de b.
-    */
+   * Sobrepoe o metodo 'troca' para atualizar o indice de cada Handle.
+   *
+   * @param i indice de a.
+   * @param j indice de b.
+   */
    protected void troca(int i, int j)
    {
 	((Handle) vetor[i]).indice = j;
@@ -29,28 +31,27 @@ public class MaxHeapPriorityQueue extends MaxHeap implements MaxPriorityQueue
 	super.troca(i,j);
    }
    
-
    /**
-    * Sobe o elemento ate que ele seja menor ou igual ao seu pai, semelhantemente ao bubbleSort.
+    * Sobe o elemento ate que ele seja maior ou igual ao seu pai, semelhantemente ao bubbleSort.
     *
     * @param i Indice do elemento.
     */
    private void bubbleUp(int i)
    {
-	while (i > 0 && vetor[pai(i)].compareTo(vetor[i]) < 0) {
+	while (i > 0 && vetor[pai(i)].compareTo(vetor[i]) > 0) {
 	    troca(i, pai(i));
 	    i = pai(i);
 	}
    }
 
    /**
-    * Insere um DynamicSetElement na fila de prioridade.
+   * Insere um DynamicSetElement na fila de prioridade.
     *
     * @param x Elemento a ser inserido
     * @return Um gerenciador para o item inserido. Esse gerenciador
-    * eh como o item eh acessado numa operacao de aumentar a chave.
+    * eh como o item eh acessado numa operacao de diminuir a chave.
     */
-   public Object insert(DynamicSetElement x)
+   public Object inserir(ElementoDinamico x)
    {
 	// Se o vetor nao existe, cria.
 	if (vetor == null) {
@@ -80,31 +81,31 @@ public class MaxHeapPriorityQueue extends MaxHeap implements MaxPriorityQueue
    }
 
    /**
-    * Retorna o maior elemento na fila sem remove-lo.
+    * Retorna o menor elemento na fila sem remove-lo.
     *
-    * @throws HeapUnderflowException se a fila estiver vazia.
+    * @throws RemocaoIncorretaException se a fila estiver vazia.
     */
-   public DynamicSetElement maximum() throws HeapUnderflowException
+   public ElementoDinamico minimo() throws RemocaoIncorretaException
    {
 	if (heapTam > 0)
 	    return ((Handle) vetor[0]).info;
 	else {
-	    throw new HeapUnderflowException();
+	    throw new RemocaoIncorretaException();
 	}
    }
    
    /**
-    * Remove e retorna o maior elemento na fila de prioridade.
+    * Remove e retorna o menor elemento na fila de prioridade.
     * 
-    * @throws HeapUnderflowException Se a fila de prioridade estiver vazia.
+    * @throws RemocaoIncorretaException Se a fila de prioridade estiver vazia.
     */
-   public DynamicSetElement extractMax()
+   public ElementoDinamico extrairMinimo()
    {
 	if (heapTam < 1)
-	    throw new HeapUnderflowException();
+	    throw new RemocaoIncorretaException();
 
-	// Recebe a referencia do maior elemento.
-	DynamicSetElement max = ((Handle) vetor[0]).info;
+	// Recebe a referencia do menor elemento.
+	ElementoDinamico min = ((Handle) vetor[0]).info;
 
 	// Move o ultimo elemento da heap para a raiz e limpa
 	// a referencia na sua posicao atual do vetor
@@ -116,26 +117,27 @@ public class MaxHeapPriorityQueue extends MaxHeap implements MaxPriorityQueue
 	// Restaura as propriedades da heap
 	heapifica(0);
 
-	return max;
+	return min;
    }
    
    /**
-    * Aumenta a chave de um dado elemento.
+    * Diminui a chave de um dado elemento.
     *
     * @param element Handle que identifica o elemento. Esse Handle eh o dado como retorno do metodo insert.
     * @param newKey A nova chave para esse elemento.
-    * @throws KeyUpdateException Se a nova chave eh menor que o valor atual.
+    * @throws AtualizacaoChaveException Se a nova chave eh maior que o valor atual.
     */
-   public void increaseKey(Object element, Comparable newKey)
-	throws KeyUpdateException
+   public void diminuirPrioridade(Object element, Comparable newKey)
+	throws AtualizacaoChaveException
    {
 	Handle handle = (Handle) element;
 
-	if (newKey.compareTo(handle.info.getChave()) < 0)
-	    throw new KeyUpdateException();
+	if (newKey.compareTo(handle.info.getChave()) > 0)
+	    throw new AtualizacaoChaveException();
 
 	handle.info.setChave(newKey); // coloca a nova chave
 	bubbleUp(handle.indice);	    // restaura a propriedade de heap.
    }
 
+   
 }
