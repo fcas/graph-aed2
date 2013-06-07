@@ -23,7 +23,7 @@ abstract public class MenorCaminho {
 	}
 
     /**Calcula o menor caminho a partir de um vértice fonte*/  
-    abstract public void computeShortestPaths(Vertice fonte);
+    abstract public void calculaMenorCaminho(Vertice fonte);
 
 	public void inicializaUnicaFonte(Vertice fonte) {
 		for (int i = 0; i < menorCaminhoInfo.length; i++) {
