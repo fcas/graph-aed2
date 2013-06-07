@@ -1,64 +1,45 @@
 package grafo;
-import java.util.Iterator;
 
+import java.util.Iterator;
 
 @SuppressWarnings("rawtypes")
 public class ArestaIteratorLA implements Iterator {
 
-	/** The edge returned by the most recent call to
-	 * <code>next</code>.  Initially, it is <code>null</code>. */
-	protected Aresta current;
+	// a mais recentemente chamada
+	protected Aresta aresta;
 
-	/** The index of the vertex whose edges this iterator iterates
-	 * through. */
-	protected int index;
+	protected int indiceVertice;
 
-	/**
-	 * Starts an iteration through the edges incident on a given
-	 * vertex.
-	 *
-	 * @param v The index of the vertex.
-	 * @param adj 
-	 */
-	
 	AdjListInfo[] adj;
-	
-	public ArestaIteratorLA(int v, AdjListInfo[] adj)
-	{
-		this.adj = adj; 
-	    index = v;
-	    current = null;
-	}
 
-	/** Returns <code>true</code> if this edge iterator has more
-	 * edges, <code>false</code> otherwise. */
-	public boolean hasNext()
-	{
-	    if (current == null)
-		return adj[index].cabeca != null;
-	    else
-		return current.getProximo() != null;
-	}
-
-	/** Returns the next edge in the iteration. */
-	public Object next()
-	{
-	    if (current == null)
-		current = adj[index].cabeca;
-	    else
-		current = current.getProximo();
-
-	    return current.getVertice();
+	public ArestaIteratorLA(int v, AdjListInfo[] adj) {
+		this.adj = adj;
+		indiceVertice = v;
+		aresta = null;
 	}
 
 	/**
-	 * Unsupported.
-	 *
-	 * @throws UnsupportedOperationException always.
+	 * Retorna true se o iterado de arestas tem uma próxima arestas, false caso
+	 * contrário.
 	 */
-	public void remove()
-	{
-	    throw new UnsupportedOperationException();
+	public boolean hasNext() {
+		if (aresta == null)
+			return adj[indiceVertice].cabeca != null;
+		else
+			return aresta.getProximo() != null;
 	}
-	
+
+	public Object next() {
+		if (aresta == null)
+			aresta = adj[indiceVertice].cabeca;
+		else
+			aresta = aresta.getProximo();
+
+		return aresta.getVertice();
+	}
+
+	public void remove() {
+		throw new UnsupportedOperationException();
+	}
+
 }

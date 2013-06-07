@@ -43,7 +43,7 @@ public class Dijkstra extends MenorCaminho {
 			double du = getMenorCaminhoInfo(u.getIndice()).getEstimativa();
 
 			// Checa cada aresta incidente.
-			ArestaPesadaIterator edgeIter = grafo.weightedEdgeIterator(u);
+			ArestaPesadaIterator edgeIter = grafo.arestaPesadaIterator(u);
 
 			while (edgeIter.hasNext()) {
 				Vertice vertice = (Vertice) edgeIter.next();

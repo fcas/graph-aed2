@@ -13,12 +13,12 @@ public interface DynamicSetElement extends Comparable
     *
     * @param key Chave a ser colocada.
     */
-   public void setKey(Comparable key);
+   public void setChave(Comparable key);
 
    /**
     * Retorna a chave de um dado elemento.
     */
-   public Comparable getKey();
+   public Comparable getChave();
 
    /**
     * Compara o DynamicSetElement a outro objeto comparavel.
@@ -53,9 +53,9 @@ public interface DynamicSetElement extends Comparable
 	public static int compareTo(DynamicSetElement e, Object o)
 	{
 	    if (o instanceof DynamicSetElement)
-		return e.getKey().compareTo(((DynamicSetElement) o).getKey());
+		return e.getChave().compareTo(((DynamicSetElement) o).getChave());
 	    else if (o instanceof Comparable)
-		return e.getKey().compareTo(o);
+		return e.getChave().compareTo(o);
 	    else
 		throw new ClassCastException("Tentativa de comparar um DynamicSetElement a um objeto que nao implementa Comparable.");
 	}
