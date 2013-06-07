@@ -7,65 +7,47 @@ import java.util.Iterator;
 
 
 public class BellmanFord extends MenorCaminho {
-	/**
-	 * Sets up the instance variables, including allocation of the
-	 * <code>spInfo</code> array but <em>not</em> allocation of the
-	 * <code>ShortestPathInfo</code> objects referenced by the array. (That's
-	 * {@link #initializeSingleSource}'s job.)
-	 * 
-	 * @param grafo
-	 *            The graph for which we are computing single-source shortest
-	 *            paths.
-	 */
+	
 	public BellmanFord(GrafoComoListaAdjacencia grafo) {
 		super(grafo);
 	}
 
-	/**
-	 * Computes single-source shortest paths from a given source vertex, filling
-	 * in weights and predecessors in the <code>spInfo</code> array. Also sets
-	 * the instance variable <code>noNegWeightCycle</code> appropriately.
-	 * 
-	 * @param fonte
-	 *            The source vertex.
-	 */
-	public void computeShortestPaths(Vertice fonte) {
+	public void calculaMenorCaminho(Vertice fonte) {
 		inicializaUnicaFonte(fonte);
 
 		int cardV = grafo.getCardinalidadeVertice();
 
-		// Run through all edges |V|-1 times.
+		// Executa |V|-1 vezes.
 		for (int i = 1; i <= cardV - 1; i++) {
 			@SuppressWarnings("rawtypes")
-			Iterator vertexIter = grafo.iteradorVertice();
+			Iterator verticeIterator = grafo.iteradorVertice();
 
-			while (vertexIter.hasNext()) {
-				Vertice u = (Vertice) vertexIter.next();
+			while (verticeIterator.hasNext()) {
+				Vertice u = (Vertice) verticeIterator.next();
 				double du = getMenorCaminhoInfo(u.getIndice()).getEstimativa();
-				ArestaPesadaIterator edgeIter = grafo.arestaPesadaIterator(u);
+				ArestaPesadaIterator arestaIterator = grafo.arestaPesadaIterator(u);
 
-				while (edgeIter.hasNext()) {
-					Vertice v = (Vertice) edgeIter.next();
-					double w = edgeIter.getPeso();
-					getMenorCaminhoInfo(v.getIndice()).relaxar(u, du, w);
+				while (arestaIterator.hasNext()) {
+					Vertice vertice = (Vertice) arestaIterator.next();
+					double peso = arestaIterator.getPeso();
+					getMenorCaminhoInfo(vertice.getIndice()).relaxar(u, du, peso);
 				}
 			}
 		}
 
-		// One more pass to see if a relaxation would have changed an
-		// edge.
+		// Verifica se o relaxamento mudou para uma aresta.
 		@SuppressWarnings("rawtypes")
-		Iterator vertexIter = grafo.iteradorVertice();
+		Iterator verticeIterator = grafo.iteradorVertice();
 
-		while (vertexIter.hasNext()) {
-			Vertice u = (Vertice) vertexIter.next();
-			double du = getMenorCaminhoInfo(u.getIndice()).getEstimativa();
-			ArestaPesadaIterator edgeIter = grafo.arestaPesadaIterator(u);
+		while (verticeIterator.hasNext()) {
+			Vertice u = (Vertice) verticeIterator.next();
+			double estimativa = getMenorCaminhoInfo(u.getIndice()).getEstimativa();
+			ArestaPesadaIterator arestaIterator = grafo.arestaPesadaIterator(u);
 
-			while (edgeIter.hasNext()) {
-				Vertice v = (Vertice) edgeIter.next();
-				double w = edgeIter.getPeso();
-				if (getMenorCaminhoInfo(v.getIndice()).getEstimativa() > du + w) {
+			while (arestaIterator.hasNext()) {
+				Vertice vertice = (Vertice) arestaIterator.next();
+				double peso = arestaIterator.getPeso();
+				if (getMenorCaminhoInfo(vertice.getIndice()).getEstimativa() > estimativa + peso) {
 					naoExisteCicloNegativo = false;
 					return;
 				}

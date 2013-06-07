@@ -15,7 +15,7 @@ public class Dijkstra extends MenorCaminho {
 	 * Calcula o menor caminho a partir de uma única fonte, vertice dado,
 	 * alocando os pesos e predecessores no array MenorCaminhoInfo.
 	 */
-	public void computeShortestPaths(Vertice fonte) {
+	public void calculaMenorCaminho(Vertice fonte) {
 		inicializaUnicaFonte(fonte);
 
 		// Cria uma fila de prioridade mínima.
