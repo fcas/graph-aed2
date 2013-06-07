@@ -1,6 +1,7 @@
 package menorcaminho;
 
 import fila.FilaPrioridadeMinimo;
+import grafo.ArestaIteratorLA;
 import grafo.GrafoComoListaAdjacencia;
 import grafo.Vertice;
 import heap.FilaHeapMinimo;
@@ -43,7 +44,7 @@ public class Dijkstra extends MenorCaminho {
 			double du = getMenorCaminhoInfo(u.getIndice()).getEstimativa();
 
 			// Checa cada aresta incidente.
-			ArestaPesadaIterator edgeIter = grafo.arestaPesadaIterator(u);
+			ArestaIteratorLA edgeIter = grafo.arestaIteratorLA(u);
 
 			while (edgeIter.hasNext()) {
 				Vertice vertice = (Vertice) edgeIter.next();

@@ -1,33 +1,32 @@
 package grafo;
-import java.util.Iterator;
 
+import java.util.Iterator;
 
 @SuppressWarnings("rawtypes")
 public class VerticeIterator implements Iterator {
 
 	protected int ultimoVisitado;
-	Vertice[] vertices; 
-	
-	public VerticeIterator(Vertice[] vertices)
-	{
-		this.vertices = vertices;
-	    ultimoVisitado = -1;
+	AdjListInfo[] adj;
+
+	public VerticeIterator() {
+		ultimoVisitado = -1;
 	}
 
-	public boolean hasNext()
-	{
-	    return ultimoVisitado < vertices.length-1;
+	public VerticeIterator(AdjListInfo[] adj) {
+		this.adj = adj;
+		ultimoVisitado = -1;
 	}
 
-	
-	public Object next()
-	{
-	    return vertices[++ultimoVisitado];
+	public boolean hasNext() {
+		return ultimoVisitado < adj.length - 1;
 	}
 
-	public void remove()
-	{
-	    throw new UnsupportedOperationException();
+	public Object next() {
+		return adj[++ultimoVisitado].esteVertice;
+	}
+
+	public void remove() {
+		throw new UnsupportedOperationException();
 	}
 
 }

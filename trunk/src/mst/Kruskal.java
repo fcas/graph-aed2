@@ -1,5 +1,6 @@
 package mst;
 
+import grafo.ArestaIteratorLA;
 import grafo.GrafoComoListaAdjacencia;
 import grafo.Vertice;
 import heap.HeapMaximo;
@@ -34,7 +35,7 @@ public class Kruskal implements MST {
 		while (iteradorVertice.hasNext()) {
 			Vertice vertice = (Vertice) iteradorVertice.next();
 
-			ArestaPesadaIterator edgeIter = grafo.arestaPesadaIterator(vertice);
+			ArestaIteratorLA edgeIter = grafo.arestaIteratorLA(vertice);
 			while (edgeIter.hasNext()) {
 				Vertice v = (Vertice) edgeIter.next();
 

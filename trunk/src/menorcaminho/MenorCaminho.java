@@ -7,7 +7,7 @@ import grafo.Vertice;
 
 abstract public class MenorCaminho {
 	
-    protected GrafoComoListaAdjacencia grafo;
+    public GrafoComoListaAdjacencia grafo;
 
     protected boolean naoExisteCicloNegativo;
 
@@ -39,7 +39,7 @@ abstract public class MenorCaminho {
 		return new MenorCaminhoInfo();
 	}
 
-    public boolean naoExisteCicliNegativo() {
+    public boolean naoExisteCicloNegativo() {
 		return naoExisteCicloNegativo;
 	}
 

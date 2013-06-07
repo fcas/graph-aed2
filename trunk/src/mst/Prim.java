@@ -1,6 +1,7 @@
 package mst;
 
 import fila.FilaPrioridadeMinimo;
+import grafo.ArestaIteratorLA;
 import grafo.GrafoComoListaAdjacencia;
 import grafo.Vertice;
 import heap.ElementoDinamico;
@@ -28,7 +29,7 @@ public class Prim implements MST {
 			uInfo.verticeInfo = null;
 			Vertice u = uInfo.vertice;
 
-			ArestaPesadaIterator iteradorAresta = grafo.arestaPesadaIterator(u);
+			ArestaIteratorLA iteradorAresta = grafo.arestaIteratorLA(u);
 
 			while (iteradorAresta.hasNext()) {
 				Vertice vert = (Vertice) iteradorAresta.next(); // auxiliar

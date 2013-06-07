@@ -89,6 +89,22 @@ public class GrafoComoListaAdjacencia implements Grafo {
 
 	}
 	
+	public void adicionarAresta(int idOrigem, int idDestino, double peso) {
+
+		Aresta x = new Aresta(adj[idDestino].esteVertice, adj[idOrigem].cabeca);
+		adj[idOrigem].cabeca = x;
+		x.setPeso(peso);
+
+		if (!direcionado) {
+			x = new Aresta(adj[idOrigem].esteVertice, adj[idDestino].cabeca);
+			adj[idDestino].cabeca = x;
+			x.setPeso(peso);
+		}
+
+		qtdArestas++;
+
+	}
+	
 	public void adicionarAresta(int idOrigem, int idDestino) {
 
 		Aresta x = new Aresta(adj[idDestino].esteVertice, adj[idOrigem].cabeca);
@@ -102,11 +118,46 @@ public class GrafoComoListaAdjacencia implements Grafo {
 		qtdArestas++;
 
 	}
+	
+	protected static class WeightedEdge extends Aresta
+    {
+		/** The weight of this edge. */
+		private double pesoAresta;
+	
+		/**
+		 * Creates a new edge.
+		 *
+		 * @param v The adjacent vertex.
+		 * @param successor Successor edge to this one.
+		 * @param peso The weight of the new edge.
+		 */
+		public WeightedEdge(Vertice v, Aresta successor, double peso)
+			{
+			    super(v, successor);
+			    pesoAresta = peso;
+			}
+	
+		/**
+		 * Sets the weight of this edge.
+		 *
+		 * @param peso The new weight for this edge.
+		 */
+		public void setPesoAresta(double peso)
+			{
+			    pesoAresta = peso;
+			}
+	
+		/** Returns the weight of this edge. */
+		public double getWeight()
+			{
+			    return pesoAresta;
+			}
+    }
 
 	@SuppressWarnings("rawtypes")
 	@Override
 	public Iterator iteradorVertice() {
-		return iteradorVertice();
+		return new VerticeIterator(adj);
 	}
 
 	@SuppressWarnings("rawtypes")
@@ -136,8 +187,9 @@ public class GrafoComoListaAdjacencia implements Grafo {
 		return direcionado;
 	}
 
-	public ArestaPesadaIterator arestaPesadaIterator(Vertice u) {
-		return arestaPesadaIterator(u);
+	//STACK OVERFLOW TAG
+	public ArestaIteratorLA arestaIteratorLA(Vertice u) {
+		return new ArestaIteratorLA(u.getIndice(), adj);
 	}
 	
 	/**
@@ -159,6 +211,10 @@ public class GrafoComoListaAdjacencia implements Grafo {
     {
 		return new GrafoComoListaAdjacencia(cardV, directed);
     }
+	
+	public AdjListInfo[] getListaAdjacencia() {
+		return adj;
+	}
 
 	
 

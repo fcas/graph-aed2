@@ -1,5 +1,6 @@
 package menorcaminho;
 
+import grafo.ArestaIteratorLA;
 import grafo.GrafoComoListaAdjacencia;
 import grafo.Vertice;
 
@@ -24,8 +25,7 @@ public class BellmanFord extends MenorCaminho {
 			while (verticeIterator.hasNext()) {
 				Vertice u = (Vertice) verticeIterator.next();
 				double estimativa = getMenorCaminhoInfo(u.getIndice()).getEstimativa();
-				ArestaPesadaIterator arestaIterator = grafo
-						.arestaPesadaIterator(u);
+				ArestaIteratorLA arestaIterator = grafo.arestaIteratorLA(u);
 
 				while (arestaIterator.hasNext()) {
 					Vertice vertice = (Vertice) arestaIterator.next();
@@ -44,7 +44,7 @@ public class BellmanFord extends MenorCaminho {
 			Vertice u = (Vertice) verticeIterator.next();
 			double estimativa = getMenorCaminhoInfo(u.getIndice())
 					.getEstimativa();
-			ArestaPesadaIterator arestaIterator = grafo.arestaPesadaIterator(u);
+			ArestaIteratorLA arestaIterator = grafo.arestaIteratorLA(u);
 
 			while (arestaIterator.hasNext()) {
 				Vertice vertice = (Vertice) arestaIterator.next();
