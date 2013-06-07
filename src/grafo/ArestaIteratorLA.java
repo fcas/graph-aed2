@@ -41,5 +41,9 @@ public class ArestaIteratorLA implements Iterator {
 	public void remove() {
 		throw new UnsupportedOperationException();
 	}
+	
+	public double getPeso() {
+		return aresta.getPeso();
+	}
 
 }

@@ -56,4 +56,8 @@ public class MenorCaminhoInfo {
 
 		return "d = " + menorCaminho + ", pi = " + parentName;
 	}
+	
+	public double getMenorCaminho() {
+		return menorCaminho;
+	}
 }

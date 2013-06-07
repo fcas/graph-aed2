@@ -88,7 +88,7 @@ public class GrafoComoMatrizAdjacencia implements Grafo{
 	@SuppressWarnings("rawtypes")
 	@Override
 	public Iterator iteradorVertice() {
-		return new VerticeIterator(vertices);
+		return new VerticeIteratorMA(vertices);
 	}
 
 	@SuppressWarnings("rawtypes")
