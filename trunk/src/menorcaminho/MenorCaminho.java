@@ -42,10 +42,10 @@ abstract public class MenorCaminho {
 	}
 
 	public MenorCaminhoInfo getMenorCaminho(Vertice vertice) {
-		return getMenorCamminhoInfo(vertice.getIndice());
+		return getMenorCaminhoInfo(vertice.getIndice());
 	}
 
-	public MenorCaminhoInfo getMenorCamminhoInfo(int indiceVertice) {
+	public MenorCaminhoInfo getMenorCaminhoInfo(int indiceVertice) {
 		return menorCaminhoInfo[indiceVertice];
 	}
 	
